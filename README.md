@@ -67,6 +67,13 @@ Packages** pull request containing version, internal-dependency, and changelog
 updates. Merge that pull request when ready to release; the workflow publishes
 the changed packages and creates GitHub releases.
 
+Publishing uses npm trusted publishing with GitHub Actions OIDC; no npm token
+is stored in GitHub. Before the first automated release, publish the `0.0.0`
+bootstrap versions manually, then configure the same trusted publisher for
+every public `@clistd/*` package: GitHub user `matthyk`, repository `clistd`,
+and workflow filename `release.yml`. The pending Version Packages pull request
+then publishes the first `0.1.0` release automatically.
+
 ## License
 
 MIT.

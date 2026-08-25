@@ -51,7 +51,8 @@ repository-only tooling changes that do not affect a published package.
 On `main`, the release workflow combines pending changesets into a **Version
 Packages** pull request. Merging that pull request publishes the changed
 packages; do not run `npm run release` from a developer machine during normal
-releases.
+releases. Publishing uses npm trusted publishing with GitHub Actions OIDC, so
+the repository does not store an npm token.
 
 ## Package boundaries
 
