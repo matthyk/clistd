@@ -1,0 +1,14 @@
+$id: https://example.com/fixture-cli/0.1
+specVersion: '0.1'
+cli:
+  name: fixture
+  description: A fixture CLI.
+  commandSeparator: ':'
+  endOfOptions: true
+commands:
+  - id: helloo
+    invocation: [helloo]
+    exitCodes:
+      - id: success
+        code: 0
+        description: The command succeeded.

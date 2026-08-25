@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/spec/tsconfig.build.json" },
+    { "path": "./packages/core/tsconfig.build.json" },
+    { "path": "./packages/linter/tsconfig.build.json" },
+    { "path": "./packages/recommend-rules/tsconfig.build.json" },
+    { "path": "./packages/clig-rules/tsconfig.build.json" },
+    { "path": "./packages/adapter/tsconfig.build.json" },
+    { "path": "./packages/adapter-oclif/tsconfig.build.json" },
+    { "path": "./packages/adapter-commander/tsconfig.build.json" },
+    { "path": "./packages/cli/tsconfig.build.json" }
+  ]
+}

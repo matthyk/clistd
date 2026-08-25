@@ -1,0 +1,15 @@
+{
+  "reportVersion": "0.1",
+  "diagnostics": [
+    {
+      "code": "example/require-description",
+      "message": "Commands need a description.",
+      "severity": "warn",
+      "paths": ["$.commands[0]"],
+      "prompt": "Add a concise description.",
+      "source": "file:///workspace/cli.yaml"
+    }
+  ],
+  "errorCount": 0,
+  "warningCount": 1
+}

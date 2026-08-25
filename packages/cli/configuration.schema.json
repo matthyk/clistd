@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "clistd configuration",
+  "description": "Configuration for clistd lint rules and external adapters.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Filesystem path to this schema for editor integration."
+    },
+    "ruleModules": {
+      "type": "array",
+      "description": "ESM modules that export additional clistd rules.",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "rules": {
+      "type": "object",
+      "description": "Rule severities and optional rule-specific settings.",
+      "properties": {
+        "clistd/no-similar-flag-names": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Warn when flags in different commands have confusingly similar long names.",
+          "default": "warn"
+        },
+        "clistd/no-duplicate-documentation": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Disallow identical summaries and descriptions on different CLI elements.",
+          "default": "error"
+        },
+        "clistd/max-commands-per-topic": {
+          "$ref": "#/$defs/maxCommandsPerTopicRuleSetting",
+          "description": "Warn when a topic contains more commands than the configured maximum.",
+          "default": "warn"
+        },
+        "clistd/require-cli-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for the CLI.",
+          "default": "warn"
+        },
+        "clistd/require-topic-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for every topic.",
+          "default": "warn"
+        },
+        "clistd/require-command-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for every command.",
+          "default": "warn"
+        },
+        "clistd/require-argument-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for every visible argument.",
+          "default": "warn"
+        },
+        "clistd/require-flag-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for every visible flag.",
+          "default": "warn"
+        },
+        "clistd/require-json-flag": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require every command to support machine-readable JSON output with --json.",
+          "default": "warn"
+        },
+        "clistd/require-output-description": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a description for every output contract.",
+          "default": "warn"
+        },
+        "clistd/require-success-exit-code": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require every command to document its successful exit code.",
+          "default": "off"
+        },
+        "clistd/require-value-flag-value-name": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require value flags to declare a readable value placeholder.",
+          "default": "off"
+        },
+        "clig/command-name-style": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require the CLI name to use lowercase letters and dashes only.",
+          "default": "warn"
+        },
+        "clig/standard-flag-names": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require conventional short names for standard long flags.",
+          "default": "warn"
+        },
+        "clig/prefer-flags-to-arguments": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Discourage commands with multiple distinct positional arguments.",
+          "default": "warn"
+        },
+        "clig/no-secret-value-flag": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Disallow value flags whose names indicate that they accept secrets.",
+          "default": "warn"
+        },
+        "clig/require-json-output-flag": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require a --json flag when a command declares JSON output.",
+          "default": "off"
+        },
+        "clig/require-success-exit-code": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require commands to document exit code 0 for successful completion.",
+          "default": "off"
+        },
+        "clig/require-failure-exit-code": {
+          "$ref": "#/$defs/ruleSetting",
+          "description": "Require commands to document a non-zero exit code for failure.",
+          "default": "off"
+        }
+      },
+      "additionalProperties": { "$ref": "#/$defs/ruleSetting" }
+    },
+    "adapters": {
+      "description": "External adapters, keyed by ID or declared as an array.",
+      "oneOf": [
+        { "type": "object", "additionalProperties": { "$ref": "#/$defs/adapter" } },
+        { "type": "array", "items": { "$ref": "#/$defs/identifiedAdapter" } }
+      ]
+    }
+  },
+  "$defs": {
+    "severity": { "enum": ["off", "warn", "error"] },
+    "ruleSetting": {
+      "oneOf": [
+        { "$ref": "#/$defs/severity" },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [{ "$ref": "#/$defs/severity" }, true]
+        }
+      ]
+    },
+    "maxCommandsPerTopicRuleSetting": {
+      "oneOf": [
+        { "$ref": "#/$defs/severity" },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            { "$ref": "#/$defs/severity" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["maxCommands"],
+              "properties": {
+                "maxCommands": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "default": 7,
+                  "description": "Maximum number of commands allowed in a topic."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "command": { "type": "string", "minLength": 1 },
+        "args": { "type": "array", "items": { "type": "string" } },
+        "cwd": { "type": "string", "minLength": 1 },
+        "timeoutMs": { "type": "integer", "minimum": 1 },
+        "maxStdoutBytes": { "type": "integer", "minimum": 1 },
+        "maxStderrBytes": { "type": "integer", "minimum": 1 },
+        "options": true,
+        "prompt": { "type": "boolean" }
+      }
+    },
+    "identifiedAdapter": {
+      "allOf": [{ "$ref": "#/$defs/adapter" }, { "required": ["id"] }]
+    }
+  }
+}

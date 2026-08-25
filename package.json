@@ -1,0 +1,52 @@
+{
+  "name": "@clistd/source",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bringing standardization to command-line interfaces.",
+  "keywords": [
+    "cli",
+    "linter",
+    "spec",
+    "standards",
+    "testing"
+  ],
+  "homepage": "https://github.com/matthyk/clistd#readme",
+  "bugs": {
+    "url": "https://github.com/matthyk/clistd/issues"
+  },
+  "license": "MIT",
+  "author": "Matthias Keckl",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthyk/clistd.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build && npm run copy:configuration-schema --workspace @clistd/cli",
+    "format": "oxfmt . --check",
+    "format:write": "oxfmt . --write",
+    "lint": "oxlint . --deny-warnings --no-error-on-unmatched-pattern",
+    "lint:fix": "oxlint . --fix --deny-warnings --no-error-on-unmatched-pattern",
+    "test": "borp --pattern 'packages/*/test/**/*.{test,spec}.{ts,mts,js,mjs}'",
+    "test:coverage": "borp --coverage --pattern 'packages/*/test/**/*.{test,spec}.{ts,mts,js,mjs}'",
+    "typecheck": "tsc --build --pretty false",
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts",
+    "release": "npm run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.1",
+    "@types/node": "^26.2.0",
+    "borp": "^1.0.0",
+    "oxfmt": "^0.61.0",
+    "oxlint": "^1.76.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.11"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2022",
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "types": ["node"]
+  },
+  "references": [{ "path": "../spec/tsconfig.build.json" }],
+  "include": ["src/**/*.ts"]
+}

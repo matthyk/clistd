@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "composite": false,
+    "noEmit": true,
+    "paths": {
+      "@clistd/linter": ["./src/index.ts"]
+    },
+    "rootDir": "."
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}

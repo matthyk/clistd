@@ -1,0 +1,4 @@
+$schema: ./packages/cli/configuration.schema.json
+
+rules:
+  clistd/require-flag-description: off

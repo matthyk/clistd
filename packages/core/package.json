@@ -1,0 +1,36 @@
+{
+  "name": "@clistd/core",
+  "version": "0.0.0",
+  "description": "Validation, reference resolution, normalized AST, and indexes for clistd documents.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthyk/clistd.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "test": "borp --pattern 'test/**/*.test.ts'",
+    "test:coverage": "borp --coverage --pattern 'test/**/*.test.ts'",
+    "typecheck": "tsc --project tsconfig.json --pretty false"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^15.3.5",
+    "@clistd/spec": "^0.0.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "@clistd/adapter-commander",
+  "version": "0.0.0",
+  "description": "Built-in Commander.js adapter for clistd.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthyk/clistd.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "test": "borp --pattern 'test/**/*.test.ts'",
+    "test:coverage": "borp --coverage --pattern 'test/**/*.test.ts'",
+    "typecheck": "tsc --project tsconfig.json --pretty false"
+  },
+  "dependencies": {
+    "@clistd/adapter": "^0.0.0",
+    "jiti": "^2.7.0"
+  },
+  "devDependencies": {
+    "@clistd/core": "^0.0.0",
+    "@types/node": "^22.0.0"
+  },
+  "peerDependencies": {
+    "commander": "^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0"
+  },
+  "peerDependenciesMeta": {
+    "commander": {
+      "optional": true
+    }
+  }
+}

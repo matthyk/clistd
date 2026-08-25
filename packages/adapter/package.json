@@ -1,0 +1,30 @@
+{
+  "name": "@clistd/adapter",
+  "version": "0.0.0",
+  "description": "Framework-neutral adapter contract, registry, and JSON-over-stdio protocol for clistd.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthyk/clistd.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "test": "borp --pattern 'test/**/*.test.ts'",
+    "test:coverage": "borp --coverage --pattern 'test/**/*.test.ts'",
+    "typecheck": "tsc --project tsconfig.json --pretty false"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "env": {
+    "es2024": true,
+    "node": true
+  },
+  "plugins": ["import", "node", "oxc", "typescript", "unicorn"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "ignorePatterns": ["**/dist/**", "**/coverage/**", "**/*.generated.*"],
+  "rules": {
+    "eqeqeq": "error",
+    "no-console": "error",
+    "prefer-const": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.mts", "**/*.spec.ts", "**/*.spec.mts"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}
