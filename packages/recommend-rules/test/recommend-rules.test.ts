@@ -52,6 +52,7 @@ test('exports the stable recommended rule collection in its documented order', (
       'clistd/require-value-flag-value-name',
     ],
   );
+  assert.equal(requireCliDescription.meta.defaultSeverity, 'off');
   assert.equal(requireSuccessExitCode.meta.defaultSeverity, 'off');
   assert.equal(requireValueFlagValueName.meta.defaultSeverity, 'off');
   assert.equal(noSimilarFlagNames.meta.defaultSeverity, 'warn');
@@ -60,6 +61,7 @@ test('exports the stable recommended rule collection in its documented order', (
     recommendedRules
       .filter(
         (rule) =>
+          rule !== requireCliDescription &&
           rule !== requireSuccessExitCode &&
           rule !== requireValueFlagValueName &&
           rule !== noDuplicateDocumentation,

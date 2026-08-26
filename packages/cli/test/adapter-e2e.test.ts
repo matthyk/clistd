@@ -29,15 +29,12 @@ test('lints minimal CLIs through each built-in adapter', async (t) => {
     const report = await lintWithAdapter('oclif', join(fixtures, 'oclif'));
 
     assert.equal(report.errorCount, 0);
-    assert.equal(report.warningCount, 1);
-    assert.deepEqual(
-      report.diagnostics.map((diagnostic) => diagnostic.code),
-      ['clistd/require-cli-description'],
-    );
+    assert.equal(report.warningCount, 0);
+    assert.deepEqual(report.diagnostics, []);
   });
 });
 
-test('reports adapter failures as oclif command errors', async () => {
+test('reports invalid Oclif adapter documents as command errors', async () => {
   const source = await mkdtemp(join(tmpdir(), 'clistd-oclif-adapter-failure-'));
   try {
     await writeFile(join(source, 'package.json'), JSON.stringify({ name: 'fixture' }));
@@ -57,10 +54,10 @@ test('reports adapter failures as oclif command errors', async () => {
         const stderr = typeof output.stderr === 'string' ? output.stderr : '';
         const stdout = typeof output.stdout === 'string' ? output.stdout : '';
         assert.equal(output.message.includes('Command failed'), true);
-        assert.match(stderr, /The Oclif adapter supports @oclif\/core v4\./u);
-        assert.match(stderr, /Found no @oclif\/core/u);
-        assert.match(stderr, /dependency\./u);
-        assert.doesNotMatch(`${stdout}${stderr}`, /adapter\/failed|1 problem/u);
+        assert.match(stdout, /must NOT have fewer than 1 items/u);
+        assert.match(stdout, /schema\/minItems/u);
+        assert.match(stdout, /1 problem \(1 error, 0 warnings\)/u);
+        assert.doesNotMatch(`${stdout}${stderr}`, /adapter\/failed/u);
         return true;
       },
     );
