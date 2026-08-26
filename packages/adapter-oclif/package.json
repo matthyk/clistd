@@ -1,6 +1,6 @@
 {
   "name": "@clistd/adapter-oclif",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Built-in Oclif project adapter for clistd.",
   "license": "MIT",
   "repository": {
@@ -25,11 +25,11 @@
     "typecheck": "tsc --project tsconfig.json --pretty false"
   },
   "dependencies": {
-    "@clistd/adapter": "^0.0.0",
+    "@clistd/adapter": "^0.1.0",
     "@oclif/core": "^4.5.3"
   },
   "devDependencies": {
-    "@clistd/core": "^0.0.0",
+    "@clistd/core": "^0.1.0",
     "@types/node": "^22.0.0"
   }
 }

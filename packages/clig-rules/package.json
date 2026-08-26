@@ -1,6 +1,6 @@
 {
   "name": "@clistd/clig-rules",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Command Line Interface Guidelines lint rules for clistd documents.",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "typecheck": "tsc --project tsconfig.json --pretty false"
   },
   "dependencies": {
-    "@clistd/linter": "^0.0.0"
+    "@clistd/linter": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0"
