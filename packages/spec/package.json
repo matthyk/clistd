@@ -1,6 +1,6 @@
 {
   "name": "@clistd/spec",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Public types and JSON Schema for clistd CLI specifications.",
   "license": "MIT",
   "repository": {

@@ -1,6 +1,6 @@
 {
   "name": "@clistd/adapter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Framework-neutral adapter contract, registry, and JSON-over-stdio protocol for clistd.",
   "license": "MIT",
   "repository": {

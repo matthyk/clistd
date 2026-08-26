@@ -1,6 +1,6 @@
 {
   "name": "@clistd/adapter-commander",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Built-in Commander.js adapter for clistd.",
   "license": "MIT",
   "repository": {
@@ -25,11 +25,11 @@
     "typecheck": "tsc --project tsconfig.json --pretty false"
   },
   "dependencies": {
-    "@clistd/adapter": "^0.0.0",
+    "@clistd/adapter": "^0.1.0",
     "jiti": "^2.7.0"
   },
   "devDependencies": {
-    "@clistd/core": "^0.0.0",
+    "@clistd/core": "^0.1.0",
     "@types/node": "^22.0.0"
   },
   "peerDependencies": {
